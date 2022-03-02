@@ -574,6 +574,9 @@ class DrawableDefinitionServer {
   /// Attempt to lookup a [Drawable] by [id].
   DrawableStyleable? getDrawable(String id, {bool nullOk = false}) {
     assert(id != null); // ignore: unnecessary_null_comparison
+    if (!_drawables.containsKey(id)) {
+      return null;
+    }
     final DrawableStyleable? value = _drawables[id];
     if (value == null && nullOk != true) {
       throw StateError('Expected to find Drawable with id $id.\n'
